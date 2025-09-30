@@ -1,42 +1,217 @@
-<header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="assets/img/about/hero-logo-white.png" alt="">
-        
-      </a>
+  <style>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <!-- <li><a href="#services">Services</a></li> -->
-          <li><a href="#portfolio">Events</a></li>
-          <li><a href="#team">Schedule</a></li>
-          <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li> -->
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+/* Ensure Bootstrap is loaded before this custom CSS */
 
-      <a class="btn-getstarted" href="#about">Get Started</a>
+.countdown-alt-style {
+    /* Optional: Add a background or specific grid for the container if needed */
+    /* background-image: url('path/to/your/grid-background.png'); */
+    /* background-size: cover; */
+    /* min-height: 200px; /* Adjust as needed */
+    display: flex; /* Use flexbox to center content vertically */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
+.countdown-alt-style .countdown-description {
+    font-size: 1.2em; /* Adjust description text size */
+    color: #333; /* Darker color for description */
+    margin-bottom: 25px; /* Space between description and countdown */
+    font-weight: 500;
+}
+
+.countdown-display {
+    font-family: 'Arial Black', Gadget, sans-serif; /* Or your preferred bold, blocky font */
+    font-size: 4em; /* Large font size for the entire countdown line */
+    font-weight: 900; /* Extra bold */
+    color: #212529; /* Dark color for most text */
+    white-space: nowrap; /* Keep the entire countdown on one line if possible */
+}
+
+.countdown-display .countdown-number {
+    color: #dc3545; /* Bootstrap's 'danger' red for the numbers */
+    margin: 0 5px; /* Slight spacing around numbers */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .countdown-alt-style .countdown-description {
+        font-size: 1em;
+    }
+    .countdown-display {
+        font-size: 2.5em; /* Smaller font size on smaller screens */
+        white-space: normal; /* Allow wrapping on smaller screens */
+        line-height: 1.2;
+    }
+    .countdown-display .countdown-number {
+        margin: 0 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-display {
+        font-size: 1.8em; /* Even smaller font size on very small screens */
+    }
+}
+
+</style>
+
+</head>
+<body>
+  
+<div class="container my-5 text-center countdown-alt-style">
+    <p class="mb-4 text-muted countdown-description">An IEEE PIE Kerala Section flagship experience that transforms visionaries into industry leaders</p>
+    
+    <div class="countdown-display">
+        <span id="countdown-days" class="countdown-number">17</span> 
+        <span class="countdown-label">DAYS</span>, 
+        <span id="countdown-hours" class="countdown-number">0</span> 
+        <span class="countdown-label">HOURS TO GO !</span>
     </div>
-  </header>
+    
+    </div>
+
+
+  <script>
+    // --- Configuration ---
+    // Set the date and time the countdown is ending (e.g., 'Oct 30, 2025 00:00:00')
+    const endDate = new Date('Oct 20, 2025 00:00:00').getTime(); // **IMPORTANT: Set your actual event date here**
+    
+    // Get the elements to update
+    const daysEl = document.getElementById('countdown-days');
+    const hoursEl = document.getElementById('countdown-hours');
+    // const messageEl = document.getElementById('countdown-message'); // Uncomment if you keep this element
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        // Check if the countdown is finished
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            // if (messageEl) messageEl.textContent = 'The event has started!'; // Uncomment if you keep messageEl
+            // You might want to update the main countdown-display text itself here
+            document.querySelector('.countdown-display').innerHTML = 'EVENT IS LIVE!';
+            return;
+        }
+
+        // Time calculations for days and hours
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        
+        // No padding for single digits like in the image, or you can add it back if needed
+        daysEl.textContent = days;
+        hoursEl.textContent = hours;
+
+        // if (messageEl) messageEl.textContent = `Last updated: ${new Date().toLocaleTimeString()}`; // Uncomment if you keep messageEl
+    }
+
+    // Run the update function immediately on load
+    updateCountdown();
+
+    // Set up the interval to update the timer every 10 seconds for less overhead
+    const timerInterval = setInterval(updateCountdown, 10000); 
+
+</script>
+
+</body>
+</html>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- ===================================== -->
+ <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <!-- <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">Exordium 4.0</span>
+          </a> -->
+          <div class="footer-contact">
+            <span>Location</span>
+            <i class="bi bi-geo-alt"></i>
+          </div>
+          <div class="footer-contact pt-3">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.8353384465277!2d76.93808124356644!3d8.505254033374444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbea98f774c5%3A0x86b28c4cdb1274e4!2sGovernment%20Engineering%20College%2C%20Barton%20Hill%2C%20Barton%20Hill%20Colony%2C%20Kunnukuzhy%2C%20Thiruvananthapuram%2C%20Kerala%20695035!5e1!3m2!1sen!2sin!4v1759263344901!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          
+        </div>
+
+        <div class="col-lg-4 col-md-6 footer-about">
+          <div class="social-links d-flex mt-4">
+            <a href="mailto:gecbieee@gmail.com"><i class="bi bi-envelope-at"></i></a>
+            <!-- <a href=""><i class="bi bi-facebook"></i></a> -->
+            <a href="https://www.instagram.com/ieeegecbh?igsh=ZWJobTh0MmU5ZjZs"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/ieee-sb-gecbh/"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="https://www.ieeegecbh.org/">IEEE SB GECBH</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <!-- <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Hic solutasetp</h4>
+          <ul>
+            <li><a href="#">Molestiae accusamus iure</a></li>
+            <li><a href="#">Excepturi dignissimos</a></li>
+            <li><a href="#">Suscipit distinctio</a></li>
+            <li><a href="#">Dilecta</a></li>
+            <li><a href="#">Sit quas consectetur</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Nobis illum</h4>
+          <ul>
+            <li><a href="#">Ipsam</a></li>
+            <li><a href="#">Laudantium dolorum</a></li>
+            <li><a href="#">Dinera</a></li>
+            <li><a href="#">Trodelas</a></li>
+            <li><a href="#">Flexo</a></li>
+          </ul>
+        </div> -->
+
+      </div>
+    </div>
+
+
+<!-- ===================================== -->

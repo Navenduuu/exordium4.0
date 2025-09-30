@@ -827,7 +827,7 @@ section,
 .hero {
   position: relative;
   overflow: hidden;
-  background: url('../img/illustration/Desktop\ -\ 2.png') center center/cover no-repeat;
+  background: url('../img/illustration/hero-bg.png') center center/cover no-repeat;
   /* background: linear-gradient(135deg, var(--background-color) 0%, color-mix(in srgb, var(--accent-color), transparent 95%) 100%); */
   padding: 120px 0;
     /* Overlay for reduced background image opacity */
@@ -840,7 +840,7 @@ section,
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Adjust alpha for desired transparency */
+    background: rgba(0, 0, 0, 0.7); /* Adjust alpha for desired transparency */
     z-index: 1;
   }
 
@@ -850,11 +850,16 @@ section,
 }
 
 .hero .hero-content h1 {
-  font-size: clamp(3rem,calc(2.5rem + 2vw),5rem);
+  font-size: clamp(3rem,calc(3.5rem + 2vw),5rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1.5rem;
 }
+/* 
+.hero .hero-content h1 span {
+  color: var(--accent-color);
+  font-family: var(--heading-font);
+} */
 
 /* @media (max-width: 768px) {
   .hero .hero-content h1 {
@@ -919,14 +924,10 @@ section,
   text-align: center;
 }
 
-.hero .hero-stats .stat-item .stat-number {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--default-color);
-  line-height: 1;
+.hero .hero-stats .stat-item:hover{
+  transform: scale(1.05);
+  transition: 100ms;
 }
-
 .hero .hero-stats .stat-item .stat-label {
   display: block;
   font-size: 0.9rem;
@@ -943,6 +944,7 @@ section,
 
 .hero .hero-visual {
   position: relative;
+  margin: auto;
 }
 
 .hero .hero-visual .hero-image {
@@ -952,6 +954,9 @@ section,
 
 .hero .hero-visual .hero-image img {
   border-radius: 20px;
+   width: 100%; /* Important for responsiveness */
+  height: auto;
+  display: block;
 }
 
 .hero .hero-bg-elements {
@@ -1045,6 +1050,7 @@ section,
     font-size: 1.5rem;
   }
 }
+
 
 /*--------------------------------------------------------------
 # About Section
@@ -1393,9 +1399,9 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Section
+# events Section
 --------------------------------------------------------------*/
-.portfolio .portfolio-filters {
+.events .events-filters {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -1406,13 +1412,13 @@ section,
 }
 
 @media (max-width: 768px) {
-  .portfolio .portfolio-filters {
+  .events .events-filters {
     gap: 6px;
     margin-bottom: 30px;
   }
 }
 
-.portfolio .portfolio-filters li {
+.events .events-filters li {
   padding: 12px 24px;
   font-size: 0.875rem;
   font-weight: 500;
@@ -1427,13 +1433,13 @@ section,
 }
 
 @media (max-width: 768px) {
-  .portfolio .portfolio-filters li {
+  .events .events-filters li {
     padding: 10px 18px;
     font-size: 0.8rem;
   }
 }
 
-.portfolio .portfolio-filters li::before {
+.events .events-filters li::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1444,24 +1450,24 @@ section,
   transition: left 0.5s;
 }
 
-.portfolio .portfolio-filters li:hover {
+.events .events-filters li:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 85%);
   border-color: var(--accent-color);
 }
 
-.portfolio .portfolio-filters li:hover::before {
+.events .events-filters li:hover::before {
   left: 100%;
 }
 
-.portfolio .portfolio-filters li.filter-active {
+.events .events-filters li.filter-active {
   background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #4338ca 20%));
   color: var(--contrast-color);
   border-color: var(--accent-color);
   box-shadow: 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
-.portfolio .portfolio-wrapper {
+.events .events-wrapper {
   background-color: var(--surface-color);
   border-radius: 20px;
   overflow: hidden;
@@ -1471,43 +1477,63 @@ section,
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 92%);
 }
 
-.portfolio .portfolio-wrapper:hover {
+.events .events-wrapper:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px color-mix(in srgb, var(--default-color), transparent 85%);
-  border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
+  /* box-shadow: 0 20px 40px color-mix(in srgb, var(--default-color), transparent 85%);
+  border-color: color-mix(in srgb, var(--nav-dropdown-background-color), transparent 80%); */
 }
 
-.portfolio .portfolio-wrapper:hover .portfolio-image img {
+.events .events-wrapper:hover .events-image img {
   transform: scale(1.05);
 }
 
-.portfolio .portfolio-wrapper:hover .portfolio-image .portfolio-hover {
+.events .events-wrapper:hover .events-image .events-hover {
   opacity: 1;
   visibility: visible;
 }
 
-.portfolio .portfolio-wrapper .portfolio-image {
+.events .events-wrapper .events-image {
   position: relative;
   overflow: hidden;
-  height: 240px;
-  /* width: 240px; */
-  /* aspect-ratio: 1 / 1; */
+  
+  aspect-ratio: 1 / 1;
 }
 
-.portfolio .portfolio-wrapper .portfolio-image img {
+.events .events-wrapper .events-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit:contain;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.portfolio .portfolio-wrapper .portfolio-image .portfolio-hover {
+.aspect-ratio-1-1 {
+  /* Set the positioning context */
+  position: relative;
+  /* Use padding-top to set the height relative to the width for a 1:1 ratio (100%) */
+  padding-top: 100%;
+  /* Ensure no content overflows this box */
+  overflow: hidden;
+}
+
+.aspect-ratio-1-1 img {
+  /* Position the image absolutely within the container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Make the image fill the entire container */
+  width: 100%;
+  height: 100%;
+  /* Optional: Ensure the image covers the container without distortion */
+  object-fit: cover;
+}
+
+.events .events-wrapper .events-image .events-hover {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color) 70%, white 15%), color-mix(in srgb, var(--accent-color) 90%, black 15%));
+  background: linear-gradient(0deg, color-mix(in srgb, var(--accent-color) 40%, white 15%), color-mix(in srgb, var(--accent-color) 5%, black 15%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1517,12 +1543,12 @@ section,
   backdrop-filter: blur(2px);
 }
 
-.portfolio .portfolio-wrapper .portfolio-image .portfolio-hover .portfolio-actions {
+.events .events-wrapper .events-image .events-hover .events-actions {
   display: flex;
   gap: 15px;
 }
 
-.portfolio .portfolio-wrapper .portfolio-image .portfolio-hover .portfolio-actions .action-btn {
+.events .events-wrapper .events-image .events-hover .events-actions .action-btn {
   width: 50px;
   height: 50px;
   background-color: var(--surface-color);
@@ -1536,25 +1562,25 @@ section,
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio .portfolio-wrapper .portfolio-image .portfolio-hover .portfolio-actions .action-btn:hover {
+.events .events-wrapper .events-image .events-hover .events-actions .action-btn:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.portfolio .portfolio-wrapper .portfolio-content {
+.events .events-wrapper .events-content {
   padding: 25px;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-meta {
+.events .events-wrapper .events-content .events-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-meta .project-type {
+.events .events-wrapper .events-content .events-meta .project-type {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -1565,7 +1591,7 @@ section,
   border-radius: 20px;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-meta .project-rating {
+.events .events-wrapper .events-content .events-meta .project-rating {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1574,11 +1600,11 @@ section,
   color: #fbbf24;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-meta .project-rating i {
+.events .events-wrapper .events-content .events-meta .project-rating i {
   font-size: 0.8rem;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content h3 {
+.events .events-wrapper .events-content h3 {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -1586,20 +1612,20 @@ section,
   line-height: 1.3;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content p {
+.events .events-wrapper .events-content p {
   font-size: 0.875rem;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-tech {
+.events .events-wrapper .events-content .events-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-tech .tech-badge {
+.events .events-wrapper .events-content .events-tech .tech-badge {
   font-size: 0.75rem;
   font-weight: 500;
   padding: 6px 12px;
@@ -1610,13 +1636,13 @@ section,
   transition: all 0.3s ease;
 }
 
-.portfolio .portfolio-wrapper .portfolio-content .portfolio-tech .tech-badge:hover {
+.events .events-wrapper .events-content .events-tech .tech-badge:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
   color: var(--accent-color);
   border-color: color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
-.portfolio .portfolio-cta {
+.events .events-cta {
   margin-top: 60px;
   padding: 40px 30px;
   background: linear-gradient(135deg, var(--surface-color), color-mix(in srgb, var(--surface-color), var(--accent-color) 5%));
@@ -1624,27 +1650,27 @@ section,
   border: 1px solid color-mix(in srgb, var(--accent-color), transparent 90%);
 }
 
-.portfolio .portfolio-cta h4 {
+.events .events-cta h4 {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 10px;
   color: var(--heading-color);
 }
 
-.portfolio .portfolio-cta p {
+.events .events-cta p {
   font-size: 1rem;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin-bottom: 30px;
 }
 
-.portfolio .portfolio-cta .cta-buttons {
+.events .events-cta .cta-buttons {
   display: flex;
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
 }
 
-.portfolio .portfolio-cta .cta-buttons .btn {
+.events .events-cta .cta-buttons .btn {
   padding: 14px 28px;
   font-weight: 600;
   border-radius: 12px;
@@ -1653,25 +1679,25 @@ section,
   text-decoration: none;
 }
 
-.portfolio .portfolio-cta .cta-buttons .btn.btn-primary {
+.events .events-cta .cta-buttons .btn.btn-primary {
   background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #4338ca 20%));
   color: var(--contrast-color);
   border: none;
   box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-color), transparent 70%);
 }
 
-.portfolio .portfolio-cta .cta-buttons .btn.btn-primary:hover {
+.events .events-cta .cta-buttons .btn.btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px color-mix(in srgb, var(--accent-color), transparent 60%);
 }
 
-.portfolio .portfolio-cta .cta-buttons .btn.btn-outline {
+.events .events-cta .cta-buttons .btn.btn-outline {
   background-color: transparent;
   color: var(--accent-color);
   border: 2px solid var(--accent-color);
 }
 
-.portfolio .portfolio-cta .cta-buttons .btn.btn-outline:hover {
+.events .events-cta .cta-buttons .btn.btn-outline:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-2px);
@@ -1743,7 +1769,7 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   line-height: 1.6;
   margin-bottom: 25px;
-  text-align: justify;
+  text-align:center;
   text-justify: inter-word;
 }
 
@@ -2149,33 +2175,33 @@ section,
 /*--------------------------------------------------------------
 # Team Section
 --------------------------------------------------------------*/
-.team .team-intro .intro-content h3 {
+.gallery .gallery-intro .intro-content h3 {
   font-size: 2.2rem;
   margin-bottom: 20px;
   color: var(--heading-color);
 }
 
-.team .team-intro .intro-content p {
+.gallery .gallery-intro .intro-content p {
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 30px;
   color: color-mix(in srgb, var(--default-color), transparent 15%);
 }
 
-.team .team-intro .intro-content .stats-row {
+.gallery .gallery-intro .intro-content .stats-row {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
 }
 
-.team .team-intro .intro-content .stats-row .stat-item {
+.gallery .gallery-intro .intro-content .stats-row .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.team .team-intro .intro-content .stats-row .stat-item .stat-number {
+.gallery .gallery-intro .intro-content .stats-row .stat-item .stat-number {
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent-color);
@@ -2183,14 +2209,14 @@ section,
   margin-bottom: 4px;
 }
 
-.team .team-intro .intro-content .stats-row .stat-item .stat-label {
+.gallery .gallery-intro .intro-content .stats-row .stat-item .stat-label {
   font-size: 0.9rem;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.team .team-grid {
+.gallery .gallery-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -2198,18 +2224,18 @@ section,
   margin: 0 auto;
 }
 
-.team .team-grid .member-hexagon {
+.gallery .gallery-grid .member-hexagon {
   position: relative;
   width: 160px;
   height: 160px;
   margin: 0 auto;
 }
 
-.team .team-grid .member-hexagon:nth-child(even) {
+.gallery .gallery-grid .member-hexagon:nth-child(even) {
   margin-top: 40px;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner {
+.gallery .gallery-grid .member-hexagon .hexagon-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -2219,28 +2245,28 @@ section,
   cursor: pointer;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner:hover {
+.gallery .gallery-grid .member-hexagon .hexagon-inner:hover {
   border-radius: 20% 80% 80% 20%/20% 20% 80% 80%;
   transform: scale(1.05) rotate(5deg);
 }
 
-.team .team-grid .member-hexagon .hexagon-inner:hover .member-overlay {
+.gallery .gallery-grid .member-hexagon .hexagon-inner:hover .member-overlay {
   opacity: 1;
   transform: translateY(0);
 }
 
-.team .team-grid .member-hexagon .hexagon-inner:hover img {
+.gallery .gallery-grid .member-hexagon .hexagon-inner:hover img {
   transform: scale(1.1);
 }
 
-.team .team-grid .member-hexagon .hexagon-inner img {
+.gallery .gallery-grid .member-hexagon .hexagon-inner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(45deg, color-mix(in srgb, var(--accent-color), transparent 10%) 0%, color-mix(in srgb, var(--accent-color), transparent 25%) 100%);
@@ -2256,25 +2282,25 @@ section,
   padding: 20px;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay h5 {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay h5 {
   font-size: 1.1rem;
   margin: 0 0 4px 0;
   font-weight: 600;
   color: var(--contrast-color);
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay span {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay span {
   font-size: 0.85rem;
   margin-bottom: 15px;
   opacity: 0.9;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay .social-icons {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay .social-icons {
   display: flex;
   gap: 8px;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay .social-icons a {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay .social-icons a {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -2285,23 +2311,23 @@ section,
   transition: all 0.3s ease;
 }
 
-.team .team-grid .member-hexagon .hexagon-inner .member-overlay .social-icons a:hover {
+.gallery .gallery-grid .member-hexagon .hexagon-inner .member-overlay .social-icons a:hover {
   background: var(--contrast-color);
   transform: translateY(-2px);
 }
 
-.team .team-carousel-wrapper .carousel-title {
+.gallery .gallery-carousel-wrapper .carousel-title {
   text-align: center;
   font-size: 1.8rem;
   margin-bottom: 40px;
   color: var(--heading-color);
 }
 
-.team .team-carousel-wrapper .leadership-slider {
+.gallery .gallery-carousel-wrapper .leadership-slider {
   padding-bottom: 50px;
 }
 
-.team .team-carousel-wrapper .leadership-slider .swiper-slide {
+.gallery .gallery-carousel-wrapper .leadership-slider .swiper-slide {
   padding: 0;
   display: flex;
   align-items: stretch;
@@ -2309,7 +2335,7 @@ section,
   margin: 5px;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card {
   background: var(--surface-color);
   border-radius: 20px;
   overflow: hidden;
@@ -2319,18 +2345,18 @@ section,
   background-position: center;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card:hover {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card:hover {
   transform: translateY(-8px);
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-image {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-image {
   position: relative;
   gap: 2px;
   overflow: hidden;
   
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-image img {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-image img {
   width: 100%;
   height: auto;
   margin: auto;
@@ -2338,25 +2364,25 @@ section,
   transition: transform 0.3s ease;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-image::after {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-image::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--accent-color), transparent 85%) 100%);
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info {
   padding: 25px;
   text-align: center;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info h5 {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info h5 {
   font-size: 1.3rem;
   margin: 0 0 5px 0;
   color: var(--heading-color);
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info .position {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info .position {
   color: var(--accent-color);
   font-weight: 500;
   font-size: 0.95rem;
@@ -2364,20 +2390,20 @@ section,
   display: block;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info p {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info p {
   font-size: 0.9rem;
   line-height: 1.5;
   color: color-mix(in srgb, var(--default-color), transparent 25%);
   margin-bottom: 20px;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact .contact-btn {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact .contact-btn {
   width: 40px;
   height: 40px;
   border-radius: 10px;
@@ -2388,22 +2414,22 @@ section,
   transition: all 0.3s ease;
 }
 
-.team .team-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact .contact-btn:hover {
+.gallery .gallery-carousel-wrapper .leadership-slider .leader-card .leader-info .leader-contact .contact-btn:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-2px);
 }
 
-.team .team-carousel-wrapper .leadership-slider .swiper-pagination .swiper-pagination-bullet {
+.gallery .gallery-carousel-wrapper .leadership-slider .swiper-pagination .swiper-pagination-bullet {
   background: color-mix(in srgb, var(--accent-color), transparent 70%);
   opacity: 1;
 }
 
-.team .team-carousel-wrapper .leadership-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+.gallery .gallery-carousel-wrapper .leadership-slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: var(--accent-color);
 }
 
-.team .join-team-cta {
+.gallery .join-gallery-cta {
   background: linear-gradient(135deg, color-mix(in srgb, var(--accent-color), transparent 95%) 0%, color-mix(in srgb, var(--accent-color), transparent 92%) 100%);
   border: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
   border-radius: 25px;
@@ -2413,7 +2439,7 @@ section,
   overflow: hidden;
 }
 
-.team .join-team-cta::before {
+.gallery .join-gallery-cta::before {
   content: "";
   position: absolute;
   top: -50%;
@@ -2424,7 +2450,7 @@ section,
   border-radius: 50%;
 }
 
-.team .join-team-cta .cta-icon {
+.gallery .join-gallery-cta .cta-icon {
   width: 80px;
   height: 80px;
   border-radius: 20px;
@@ -2437,22 +2463,22 @@ section,
   z-index: 2;
 }
 
-.team .join-team-cta .cta-icon i {
+.gallery .join-gallery-cta .cta-icon i {
   font-size: 2rem;
 }
 
-.team .join-team-cta .cta-content {
+.gallery .join-gallery-cta .cta-content {
   position: relative;
   z-index: 2;
 }
 
-.team .join-team-cta .cta-content h4 {
+.gallery .join-gallery-cta .cta-content h4 {
   font-size: 1.8rem;
   margin-bottom: 15px;
   color: var(--heading-color);
 }
 
-.team .join-team-cta .cta-content p {
+.gallery .join-gallery-cta .cta-content p {
   font-size: 1.05rem;
   color: color-mix(in srgb, var(--default-color), transparent 15%);
   margin-bottom: 30px;
@@ -2461,119 +2487,119 @@ section,
   margin-right: auto;
 }
 
-.team .join-team-cta .cta-content .cta-actions {
+.gallery .join-gallery-cta .cta-content .cta-actions {
   display: flex;
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
 }
 
-.team .join-team-cta .cta-content .cta-actions .btn {
+.gallery .join-gallery-cta .cta-content .cta-actions .btn {
   padding: 12px 24px;
   border-radius: 12px;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
-.team .join-team-cta .cta-content .cta-actions .btn.btn-primary {
+.gallery .join-gallery-cta .cta-content .cta-actions .btn.btn-primary {
   background: var(--accent-color);
   color: var(--contrast-color);
   border: 1px solid var(--accent-color);
 }
 
-.team .join-team-cta .cta-content .cta-actions .btn.btn-primary:hover {
+.gallery .join-gallery-cta .cta-content .cta-actions .btn.btn-primary:hover {
   background: color-mix(in srgb, var(--accent-color), black 15%);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px color-mix(in srgb, var(--accent-color), transparent 65%);
 }
 
-.team .join-team-cta .cta-content .cta-actions .btn.btn-outline {
+.gallery .join-gallery-cta .cta-content .cta-actions .btn.btn-outline {
   background: transparent;
   color: var(--accent-color);
   border: 1px solid var(--accent-color);
 }
 
-.team .join-team-cta .cta-content .cta-actions .btn.btn-outline:hover {
+.gallery .join-gallery-cta .cta-content .cta-actions .btn.btn-outline:hover {
   background: var(--accent-color);
   color: var(--contrast-color);
   transform: translateY(-2px);
 }
 
-.team .swiper-wrapper {
+.gallery .swiper-wrapper {
   height: auto !important;
 }
 
 @media (max-width: 1200px) {
-  .team .team-intro .intro-content h3 {
+  .gallery .gallery-intro .intro-content h3 {
     font-size: 1.9rem;
   }
 }
 
 @media (max-width: 992px) {
-  .team .team-grid {
+  .gallery .gallery-grid {
     max-width: 300px;
   }
 
-  .team .team-grid .member-hexagon {
+  .gallery .gallery-grid .member-hexagon {
     width: 130px;
     height: 130px;
   }
 
-  .team .team-grid .member-hexagon:nth-child(even) {
+  .gallery .gallery-grid .member-hexagon:nth-child(even) {
     margin-top: 30px;
   }
 
-  .team .join-team-cta {
+  .gallery .join-gallery-cta {
     padding: 30px 20px;
   }
 
-  .team .join-team-cta .cta-content h4 {
+  .gallery .join-gallery-cta .cta-content h4 {
     font-size: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .team .team-intro .intro-content {
+  .gallery .gallery-intro .intro-content {
     text-align: center;
     margin-bottom: 40px;
   }
 
-  .team .team-intro .intro-content .stats-row {
+  .gallery .gallery-intro .intro-content .stats-row {
     justify-content: center;
     gap: 20px;
   }
 
-  .team .team-grid {
+  .gallery .gallery-grid {
     grid-template-columns: 1fr;
     max-width: 200px;
   }
 
-  .team .team-grid .member-hexagon {
+  .gallery .gallery-grid .member-hexagon {
     width: 180px;
     height: 180px;
   }
 
-  .team .team-grid .member-hexagon:nth-child(even) {
+  .gallery .gallery-grid .member-hexagon:nth-child(even) {
     margin-top: 0;
   }
 
-  .team .join-team-cta .cta-content .cta-actions {
+  .gallery .join-gallery-cta .cta-content .cta-actions {
     flex-direction: column;
     align-items: center;
   }
 
-  .team .join-team-cta .cta-content .cta-actions .btn {
+  .gallery .join-gallery-cta .cta-content .cta-actions .btn {
     width: 200px;
   }
 }
 
 @media (max-width: 576px) {
-  .team .team-carousel-wrapper .carousel-title {
+  .gallery .gallery-carousel-wrapper .carousel-title {
     font-size: 1.5rem;
     margin-bottom: 30px;
   }
 
-  .team .leadership-slider .leader-card .leader-info {
+  .gallery .leadership-slider .leader-card .leader-info {
     padding: 20px;
   }
 }
@@ -2931,39 +2957,39 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details Section
+# events Details Section
 --------------------------------------------------------------*/
-.portfolio-details {
+.events-details {
   --section-spacing: 2.5rem;
 }
 
-.portfolio-details .portfolio-details-media {
+.events-details .events-details-media {
   position: relative;
 }
 
-.portfolio-details .portfolio-details-media .main-image {
+.events-details .events-details-media .main-image {
   margin-bottom: 1rem;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider {
+.events-details .events-details-media .main-image .events-details-slider {
   position: relative;
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-wrapper {
+.events-details .events-details-media .main-image .events-details-slider .swiper-wrapper {
   height: auto !important;
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-slide img {
+.events-details .events-details-media .main-image .events-details-slider .swiper-slide img {
   aspect-ratio: 3/2;
   object-fit: cover;
   width: 100%;
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next,
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev {
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-next,
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-prev {
   background-color: var(--contrast-color);
   width: 40px;
   height: 40px;
@@ -2971,24 +2997,24 @@ section,
   transition: all 0.3s ease;
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:after,
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:after {
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-next:after,
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-prev:after {
   font-size: 16px;
   color: var(--accent-color);
   font-weight: bold;
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover,
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover {
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-next:hover,
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-prev:hover {
   background-color: var(--accent-color);
 }
 
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-next:hover:after,
-.portfolio-details .portfolio-details-media .main-image .portfolio-details-slider .swiper-button-prev:hover:after {
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-next:hover:after,
+.events-details .events-details-media .main-image .events-details-slider .swiper-button-prev:hover:after {
   color: var(--contrast-color);
 }
 
-.portfolio-details .portfolio-details-media .thumbnail-grid img {
+.events-details .events-details-media .thumbnail-grid img {
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
@@ -2997,19 +3023,19 @@ section,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.portfolio-details .portfolio-details-media .thumbnail-grid img:hover {
+.events-details .events-details-media .thumbnail-grid img:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio-details .portfolio-details-media .tech-stack-badges {
+.events-details .events-details-media .tech-stack-badges {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 1.5rem;
 }
 
-.portfolio-details .portfolio-details-media .tech-stack-badges span {
+.events-details .events-details-media .tech-stack-badges span {
   display: inline-block;
   padding: 6px 12px;
   font-size: 13px;
@@ -3020,26 +3046,26 @@ section,
   transition: all 0.3s ease;
 }
 
-.portfolio-details .portfolio-details-media .tech-stack-badges span:hover {
+.events-details .events-details-media .tech-stack-badges span:hover {
   background-color: color-mix(in srgb, var(--heading-color), transparent 70%);
   transform: translateY(-2px);
 }
 
-.portfolio-details .portfolio-details-content {
+.events-details .events-details-content {
   padding: 0 0 0 2rem;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.portfolio-details .portfolio-details-content .project-meta {
+.events-details .events-details-content .project-meta {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1.5rem;
 }
 
-.portfolio-details .portfolio-details-content .project-meta .badge-wrapper .project-badge {
+.events-details .events-details-content .project-meta .badge-wrapper .project-badge {
   display: inline-block;
   padding: 8px 16px;
   background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
@@ -3049,24 +3075,24 @@ section,
   font-size: 14px;
 }
 
-.portfolio-details .portfolio-details-content .project-meta .date-client {
+.events-details .events-details-content .project-meta .date-client {
   display: flex;
   gap: 1.5rem;
 }
 
-.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item {
+.events-details .events-details-content .project-meta .date-client .meta-item {
   display: flex;
   align-items: center;
   font-size: 14px;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
-.portfolio-details .portfolio-details-content .project-meta .date-client .meta-item i {
+.events-details .events-details-content .project-meta .date-client .meta-item i {
   margin-right: 6px;
   color: var(--accent-color);
 }
 
-.portfolio-details .portfolio-details-content .project-title {
+.events-details .events-details-content .project-title {
   font-size: 2.2rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -3074,45 +3100,45 @@ section,
   color: var(--heading-color);
 }
 
-.portfolio-details .portfolio-details-content .project-website {
+.events-details .events-details-content .project-website {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.portfolio-details .portfolio-details-content .project-website i {
+.events-details .events-details-content .project-website i {
   font-size: 22px;
   color: var(--accent-color);
   margin-right: 8px;
 }
 
-.portfolio-details .portfolio-details-content .project-website a {
+.events-details .events-details-content .project-website a {
   font-weight: 500;
   transition: all 0.3s;
 }
 
-.portfolio-details .portfolio-details-content .project-website a:hover {
+.events-details .events-details-content .project-website a:hover {
   letter-spacing: 0.5px;
 }
 
-.portfolio-details .portfolio-details-content .project-overview {
+.events-details .events-details-content .project-overview {
   margin-bottom: var(--section-spacing);
 }
 
-.portfolio-details .portfolio-details-content .project-overview .lead {
+.events-details .events-details-content .project-overview .lead {
   font-size: 1.1rem;
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 15%);
   margin-bottom: 1.5rem;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item {
   border: none;
   background: none;
   margin-bottom: 10px;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button {
   padding: 1rem;
   font-weight: 600;
   font-size: 1rem;
@@ -3122,7 +3148,7 @@ section,
   box-shadow: none;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
   background-color: var(--surface-color);
   color: var(--accent-color);
   border-bottom-left-radius: 0 !important;
@@ -3130,56 +3156,56 @@ section,
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) i {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) i {
   color: var(--accent-color);
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button::after {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button::after {
   background-size: 14px;
   width: 14px;
   height: 14px;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button i {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-header .accordion-button i {
   font-size: 1.1rem;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-body {
   padding: 1rem;
   background-color: var(--surface-color);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
-.portfolio-details .portfolio-details-content .project-overview .project-accordion .accordion-item .accordion-body p {
+.events-details .events-details-content .project-overview .project-accordion .accordion-item .accordion-body p {
   margin-bottom: 0;
   color: color-mix(in srgb, var(--default-color), transparent 25%);
   line-height: 1.6;
 }
 
-.portfolio-details .portfolio-details-content .project-features {
+.events-details .events-details-content .project-features {
   margin-bottom: var(--section-spacing);
 }
 
-.portfolio-details .portfolio-details-content .project-features h3 {
+.events-details .events-details-content .project-features h3 {
   display: flex;
   align-items: center;
   font-size: 1.25rem;
   margin-bottom: 1.2rem;
 }
 
-.portfolio-details .portfolio-details-content .project-features h3 i {
+.events-details .events-details-content .project-features h3 i {
   margin-right: 10px;
   color: var(--accent-color);
   font-size: 1.1em;
 }
 
-.portfolio-details .portfolio-details-content .project-features .feature-list {
+.events-details .events-details-content .project-features .feature-list {
   list-style: none;
   padding-left: 0;
 }
 
-.portfolio-details .portfolio-details-content .project-features .feature-list li {
+.events-details .events-details-content .project-features .feature-list li {
   display: flex;
   align-items: center;
   padding: 8px 0;
@@ -3187,20 +3213,20 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 15%);
 }
 
-.portfolio-details .portfolio-details-content .project-features .feature-list li i {
+.events-details .events-details-content .project-features .feature-list li i {
   color: var(--accent-color);
   margin-right: 10px;
   font-size: 1.1em;
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons {
+.events-details .events-details-content .cta-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: auto;
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project {
+.events-details .events-details-content .cta-buttons .btn-view-project {
   padding: 12px 28px;
   background-color: var(--accent-color);
   color: var(--contrast-color);
@@ -3209,13 +3235,13 @@ section,
   transition: all 0.3s ease;
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-view-project:hover {
+.events-details .events-details-content .cta-buttons .btn-view-project:hover {
   background-color: color-mix(in srgb, var(--accent-color), black 15%);
   transform: translateY(-3px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project {
+.events-details .events-details-content .cta-buttons .btn-next-project {
   padding: 12px 28px;
   background-color: color-mix(in srgb, var(--heading-color), transparent 90%);
   color: var(--heading-color);
@@ -3227,51 +3253,51 @@ section,
   gap: 8px;
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project i {
+.events-details .events-details-content .cta-buttons .btn-next-project i {
   transition: transform 0.3s ease;
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover {
+.events-details .events-details-content .cta-buttons .btn-next-project:hover {
   background-color: color-mix(in srgb, var(--heading-color), transparent 80%);
 }
 
-.portfolio-details .portfolio-details-content .cta-buttons .btn-next-project:hover i {
+.events-details .events-details-content .cta-buttons .btn-next-project:hover i {
   transform: translateX(3px);
 }
 
 @media (max-width: 1199.98px) {
-  .portfolio-details .portfolio-details-content {
+  .events-details .events-details-content {
     padding-left: 1rem;
   }
 }
 
 @media (max-width: 991.98px) {
-  .portfolio-details .portfolio-details-content {
+  .events-details .events-details-content {
     padding: 2rem 0 0 0;
   }
 
-  .portfolio-details .portfolio-details-content .cta-buttons {
+  .events-details .events-details-content .cta-buttons {
     margin-top: 2rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  .portfolio-details .project-meta {
+  .events-details .project-meta {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .portfolio-details .project-meta .date-client {
+  .events-details .project-meta .date-client {
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .portfolio-details .cta-buttons {
+  .events-details .cta-buttons {
     flex-direction: column;
     width: 100%;
   }
 
-  .portfolio-details .cta-buttons a {
+  .events-details .cta-buttons a {
     width: 100%;
     text-align: center;
   }
@@ -4262,3 +4288,103 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+.btn-primary:not(.more), .btn-outline:not(.more), .btn-getstarted:not(.more) {
+  display: none;
+}
+
+
+
+/* The parent .row must ensure columns stretch to the same height for vertical centering.
+    We apply a min-height and align-items: stretch to the Bootstrap row.
+*/
+.footer-flex-row {
+    min-height: 250px; /* Adjust this value as needed to create space */
+    align-items: stretch;
+}
+
+/* This wrapper is the key to centering. It is inside the Bootstrap grid column. 
+    It is set to display: flex and take up 100% of the column's height. 
+*/
+.footer-content-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Vertical centering */
+    align-items: center; /* Horizontal centering */
+    padding: 20px 10px; /* Add some padding inside the wrapper */
+    text-align: center; /* Ensure text itself is centered */
+  
+}
+.footer-content-wrapper iframe:hover{
+  transform:scale(1.025);
+}
+
+/* General Link Styling */
+.footer a {
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: var(--accent-color); /* Uses your theme's accent color */
+}
+
+
+
+.footer-map-col .map-placeholder i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.footer-map-col .map-placeholder p {
+    margin: 5px 0 0;
+    font-size: 0.85rem;
+}
+
+/* Useful Links List Styling */
+.footer-links-col .list-unstyled {
+    margin-top: 15px;
+    padding-left: 0;
+}
+
+.footer-links-col .list-unstyled li {
+    padding: 5px 0;
+}
+
+.footer-links-col .list-unstyled a {
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+    font-size: 0.95rem;
+}
+
+
+/* Social Links Styling */
+.footer-social-col .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--default-color), transparent 50%);
+    font-size: 18px;
+    color: color-mix(in srgb, var(--default-color), transparent 20%);
+    transition: 0.3s;
+}
+
+.footer-social-col .social-link:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* Mobile Responsiveness: Remove min-height and ensure full width */
+@media (max-width: 991px) {
+    .footer-flex-row {
+        min-height: auto; /* Allow sections to stack and collapse height */
+    }
+
+    .footer-content-wrapper {
+        padding: 40px 10px; /* Add more vertical padding between stacked sections */
+    }
+}
+
