@@ -4316,6 +4316,10 @@ section,
     text-align: center; /* Ensure text itself is centered */
   
 }
+.footer-content-wrapper iframe{
+  border-radius:15px;
+  transition:transform 0.3s ease-in-out;
+}
 .footer-content-wrapper iframe:hover{
   transform:scale(1.025);
 }
@@ -4385,6 +4389,21 @@ section,
 
     .footer-content-wrapper {
         padding: 40px 10px; /* Add more vertical padding between stacked sections */
+    }
+}
+
+@media (max-width: 576px) {
+    #mascot3{
+      display: none;
+    }
+    .cta-content{
+      text-align: center;
+      align-items: center;
+    }
+    .footer-content-wrapper iframe{
+      width:min-content;
+      margin: 1.5rem;
+     
     }
 }
 
