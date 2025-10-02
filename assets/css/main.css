@@ -4288,11 +4288,11 @@ section,
 # Starter Section Section
 --------------------------------------------------------------*/
 
-.btn-primary:not(.more,#more-event-btn), .btn-outline:not(.more), .btn-getstarted:not(.more) {
+.btn-primary:not(.more), .btn-outline:not(.more), .btn-getstarted:not(.more) {
   display: none;
 }
 
-#more-event-btn{
+#more-event-btn {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -4429,3 +4429,20 @@ section,
   transform: translateY(-4px);
 }
 
+@media (max-width: 576px) {
+  #more-events-card-div{
+
+    display: none;
+
+  }
+  #more-event-mobile{
+    display: block;
+    background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 8px;
+  border: none;
+  width:max-content;
+  margin-left: auto;
+  margin-right: auto;
+  }
+}

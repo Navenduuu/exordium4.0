@@ -209,3 +209,9 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+var iso = new Isotope('.isotope-container', {
+  itemSelector: '.isotope-item',
+  layoutMode: 'masonry', // or 'masonry', depending on your design
+  sortBy: 'original-order'
+});
