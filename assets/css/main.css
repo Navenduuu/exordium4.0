@@ -1562,6 +1562,8 @@ section,
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+
+
 .events .events-wrapper .events-image .events-hover .events-actions .action-btn:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
@@ -4285,14 +4287,25 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
 
-.btn-primary:not(.more), .btn-outline:not(.more), .btn-getstarted:not(.more) {
+.btn-primary:not(.more,#more-event-btn), .btn-outline:not(.more), .btn-getstarted:not(.more) {
   display: none;
 }
 
+#more-event-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent-color);
+}
 
 
 /* The parent .row must ensure columns stretch to the same height for vertical centering.
@@ -4405,5 +4418,14 @@ section,
       margin: 1.5rem;
      
     }
+}
+
+#more-events-card{
+  background: var(--surface-color);
+
+}
+#more-events-card:hover{
+  box-shadow: 0 8px 30px color-mix(in srgb, var(--default-color), transparent 90%);
+  transform: translateY(-4px);
 }
 
